@@ -1,0 +1,45 @@
+{
+    "name": "needleman-wunsch",
+    "version": "0.0.0",
+    "description": "Javascript implementation of the Needleman-Wunsch algorithm.",
+    "license": "MIT",
+    "keywords": [
+        "needleman-wunsch",
+        "distance",
+        "sequence alignment",
+        "string alignment"
+    ],
+    "author": {
+        "name": "Lorenzo Cestaro",
+        "email": "cestaro.lorenzo@gmail.com",
+        "url": "https://github.com/lorenzocestaro"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lorenzocestaro/needleman-wunsch.git"
+    },
+    "main": "src/index.js",
+    "scripts": {
+        "lint": "npx prettier -l src/**/*.js && eslint src/**",
+        "prettify": "npx prettier --write src/**/*.js",
+        "test": "jest --verbose --coverage",
+        "coverage": "jest --collectCoverageFrom=src/**.js --coverage"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run lint && npm test"
+        }
+    },
+    "devDependencies": {
+        "eslint": "^5.9.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-config-prettier": "^3.3.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jest": "^22.1.2",
+        "eslint-plugin-prettier": "^3.0.0",
+        "husky": "^1.3.1",
+        "jest": "^23.6.0",
+        "prettier": "1.15.3"
+    }
+}
