@@ -1,12 +1,13 @@
 {
     "name": "needleman-wunsch",
-    "version": "0.0.0",
-    "description": "Javascript implementation of the Needleman-Wunsch algorithm.",
+    "version": "1.0.0-alpha",
+    "description": "Collection of sequence alignment algorithms.",
     "license": "MIT",
     "keywords": [
+        "smith-waterman",
         "needleman-wunsch",
-        "distance",
         "sequence alignment",
+        "string distance",
         "string alignment"
     ],
     "author": {
@@ -16,7 +17,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/lorenzocestaro/needleman-wunsch.git"
+        "url": "https://github.com/lorenzocestaro/sequence-align.git"
     },
     "main": "src/index.js",
     "scripts": {
