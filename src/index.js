@@ -1,5 +1,5 @@
-const SWaligner = require('./sw.api')
+const SWaligner = require('./sw.api');
 
 module.exports = {
     SWaligner,
-}
+};
