@@ -1,4 +1,4 @@
-const { directions } = require('./dtypes');
+const { TracedScore } = require('./dtypes');
 
 const apply = fn => iterable => iterable.map(fn);
 
@@ -17,8 +17,8 @@ const scoreReducer = (max, score) => {
     throw TypeError(`Score object as an invalid score property: ${score.score}.`);
 };
 
-const reduceScores = (scores, defaultScore) =>
-    scores.reduce(scoreReducer, { score: defaultScore, direction: directions.NONE });
+const reduceTracedScores = (scores, defaultScore) =>
+    scores.reduce(scoreReducer, TracedScore(defaultScore));
 
 const throwIfNotNumber = x => (Number.isNaN(Number(x)) ? nanException() : x);
 
@@ -28,5 +28,5 @@ module.exports = {
         throwIfNotNumber,
         reverse,
     ),
-    reduceScores,
+    reduceTracedScores,
 };

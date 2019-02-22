@@ -5,4 +5,14 @@ const directions = Object.freeze({
     TOP: 3,
 });
 
-module.exports = { directions };
+const TracedScore = (score, direction = directions.NONE) => {
+    if (Object.values(directions).includes(direction)) {
+        return { score, direction };
+    }
+    throw TypeError('Invalid direction value for TracedScore');
+};
+
+module.exports = {
+    TracedScore,
+    directions,
+};

@@ -1,6 +1,6 @@
 const { createMatrix, extractColumn, extractRow } = require('./matrix.utils');
-const { reduceScores } = require('./utils');
-const { directions } = require('./dtypes');
+const { reduceTracedScores } = require('./utils');
+const { TracedScore, directions } = require('./dtypes');
 
 // Takes a portion of scoring matrix (left-row or top-column) and computes the
 // length of a gap if the gap is opened at that position.
@@ -33,15 +33,10 @@ function computeScores({ scoringMatrix, row, col, gapScoreFunction, similaritySc
     //   - Deletion score.
     //   - Insertion score.
     //   - Mutation score.
-    // Each score is stored with the respective direction to later fill
-    // the traceback matrix.
     return [
-        { value: topMax + gapScoreFunction(topGapLength), direction: directions.TOP },
-        { value: leftMax + gapScoreFunction(leftGapLength), direction: directions.LEFT },
-        {
-            value: scoringMatrix[row - 1][col - 1] + similarityScore,
-            direction: directions.DIAGONAL,
-        },
+        TracedScore(topMax + gapScoreFunction(topGapLength), directions.TOP),
+        TracedScore(leftMax + gapScoreFunction(leftGapLength), directions.LEFT),
+        TracedScore(scoringMatrix[row - 1][col - 1] + similarityScore, directions.DIAGONAL),
     ];
 }
 
@@ -73,7 +68,7 @@ function smithWaterman({ sequence1, sequence2, gapScoreFunction, similarityScore
             });
 
             // Select highest scoring substitution and fill the matrices.
-            const { score: bestScore, direction } = reduceScores(scores, 0);
+            const { score: bestScore, direction } = reduceTracedScores(scores, 0);
             scoringMatrix[row][col] = bestScore;
             tracebackMatrix[row][col] = direction;
 

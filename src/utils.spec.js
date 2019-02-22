@@ -1,5 +1,5 @@
-const { apply, reverse, reduceScores } = require('./utils');
-const { directions } = require('./dtypes');
+const { apply, reverse, reduceTracedScores } = require('./utils');
+const { TracedScore } = require('./dtypes');
 
 describe('Apply', () => {
     it('should return a function', () => {
@@ -35,29 +35,29 @@ describe('Reverse', () => {
     );
 });
 
-describe('Score reducer', () => {
+describe('TracedScore reducer', () => {
     it.each([
-        [[{ score: -1 }, { score: 3 }, { score: 58 }], { score: 58 }],
-        [[{ score: 2 }, { score: 1 }, { score: 0 }], { score: 2 }],
-        [[{ score: -2 }, { score: -1 }, { score: -5 }], { score: -1 }],
+        [[TracedScore(-1), TracedScore(3), TracedScore(58)], TracedScore(58)],
+        [[TracedScore(2), TracedScore(1), TracedScore(0)], TracedScore(2)],
+        [[TracedScore(-2), TracedScore(-1), TracedScore(-5)], TracedScore(-1)],
     ])(
         'should return the object in the array with the highest value property',
-        (toReduce, expected) => expect(reduceScores(toReduce, -Infinity)).toEqual(expected),
+        (toReduce, expected) => expect(reduceTracedScores(toReduce, -Infinity)).toEqual(expected),
     );
     it.each([
-        [[{ score: 1 }, { score: -3 }, { score: '4' }]],
-        [[{ score: 3 }, { score: () => {} }, { score: 13 }]],
+        [[TracedScore(1), TracedScore(-3), TracedScore('4')]],
+        [[TracedScore(3), TracedScore(() => {}), TracedScore(13)]],
         [[{ novalue: 3 }]],
     ])('should throw TypeError if supplied with non integer score values', toReduce =>
-        expect(() => reduceScores(toReduce)).toThrowError(TypeError),
+        expect(() => reduceTracedScores(toReduce)).toThrowError(TypeError),
     );
     it.each([
-        [[{ score: -1 }, { score: -4 }, { score: -18 }]],
-        [[{ score: 0 }, { score: 0 }, { score: 0 }]],
+        [[TracedScore(-1), TracedScore(-4), TracedScore(-18)]],
+        [[TracedScore(0), TracedScore(0), TracedScore(0)]],
         [[]],
     ])('should default to and object with default score and direction NONE', toReduce =>
-        expect(reduceScores(toReduce, 0)).toEqual({ score: 0, direction: directions.NONE }),
+        expect(reduceTracedScores(toReduce, 0)).toEqual(TracedScore(0)),
     );
     it('should throw TypeError if objects with no value property are supplied', () =>
-        expect(() => reduceScores([{ novalue: 3 }])).toThrowError(TypeError));
+        expect(() => reduceTracedScores([{ novalue: 3 }])).toThrowError(TypeError));
 });
