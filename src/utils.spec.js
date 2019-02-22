@@ -37,25 +37,26 @@ describe('Reverse', () => {
 
 describe('Score reducer', () => {
     it.each([
-        [[{ value: -1 }, { value: 3 }, { value: 58 }], { value: 58 }],
-        [[{ value: 2 }, { value: 1 }, { value: 0 }], { value: 2 }],
+        [[{ score: -1 }, { score: 3 }, { score: 58 }], { score: 58 }],
+        [[{ score: 2 }, { score: 1 }, { score: 0 }], { score: 2 }],
+        [[{ score: -2 }, { score: -1 }, { score: -5 }], { score: -1 }],
     ])(
         'should return the object in the array with the highest value property',
-        (toReduce, expected) => expect(reduceScores(toReduce)).toEqual(expected),
+        (toReduce, expected) => expect(reduceScores(toReduce, -Infinity)).toEqual(expected),
     );
     it.each([
-        [[{ value: -1 }, { value: -4 }, { value: -18 }]],
-        [[{ value: 0 }, { value: 0 }, { value: 0 }]],
-        [[]],
-    ])('should default to and object with value 0 and direction NONE', toReduce =>
-        expect(reduceScores(toReduce)).toEqual({ value: 0, direction: directions.NONE }),
-    );
-    it.each([
-        [[{ value: 1 }, { value: -3 }, { value: '4' }]],
-        [[{ value: 3 }, { value: () => {} }, { value: 13 }]],
+        [[{ score: 1 }, { score: -3 }, { score: '4' }]],
+        [[{ score: 3 }, { score: () => {} }, { score: 13 }]],
         [[{ novalue: 3 }]],
     ])('should throw TypeError if supplied with non integer score values', toReduce =>
         expect(() => reduceScores(toReduce)).toThrowError(TypeError),
+    );
+    it.each([
+        [[{ score: -1 }, { score: -4 }, { score: -18 }]],
+        [[{ score: 0 }, { score: 0 }, { score: 0 }]],
+        [[]],
+    ])('should default to and object with default score and direction NONE', toReduce =>
+        expect(reduceScores(toReduce, 0)).toEqual({ score: 0, direction: directions.NONE }),
     );
     it('should throw TypeError if objects with no value property are supplied', () =>
         expect(() => reduceScores([{ novalue: 3 }])).toThrowError(TypeError));

@@ -11,14 +11,14 @@ const nanException = () => {
 };
 
 const scoreReducer = (max, score) => {
-    if (Number.isInteger(score.value)) {
-        return score.value > max.value ? score : max;
+    if (Number.isInteger(score.score)) {
+        return score.score > max.score ? score : max;
     }
-    throw TypeError(`Score object as an invalid value property: ${score.value}.`);
+    throw TypeError(`Score object as an invalid score property: ${score.score}.`);
 };
 
-const reduceScores = scores =>
-    scores.reduce(scoreReducer, { value: 0, direction: directions.NONE });
+const reduceScores = (scores, defaultScore) =>
+    scores.reduce(scoreReducer, { score: defaultScore, direction: directions.NONE });
 
 const throwIfNotNumber = x => (Number.isNaN(Number(x)) ? nanException() : x);
 

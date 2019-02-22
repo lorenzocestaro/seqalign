@@ -73,7 +73,7 @@ function smithWaterman({ sequence1, sequence2, gapScoreFunction, similarityScore
             });
 
             // Select highest scoring substitution and fill the matrices.
-            const { value: bestScore, direction } = reduceScores(scores);
+            const { score: bestScore, direction } = reduceScores(scores, 0);
             scoringMatrix[row][col] = bestScore;
             tracebackMatrix[row][col] = direction;
 
