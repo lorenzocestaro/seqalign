@@ -24,7 +24,6 @@ function traceback({ sequence1, sequence2, tracebackMatrix, startCoordinates, ga
     const aligned2 = [];
     const coordinateWalk = [[row, col]];
     const updaters = alignmentUpdaters(gapSymbol);
-    console.log(tracebackMatrix)
     while (tracebackMatrix[row][col] !== directions.NONE) {
         const direction = tracebackMatrix[row][col];
         const alignmentUpdater = updaters(direction);

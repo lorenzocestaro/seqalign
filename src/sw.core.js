@@ -1,4 +1,5 @@
 const { createMatrix, extractColumn, extractRow } = require('./matrix.utils');
+const { reduceScores } = require('./utils');
 const { directions } = require('./dtypes');
 
 // Takes a portion of scoring matrix (left-row or top-column) and computes the
@@ -15,9 +16,6 @@ function computeGapLength(sequence) {
     }
     return { max, gapLength };
 }
-
-// Find maximum in a list of objects with a value property.
-const scoreReducer = (max, score) => (score.value > max.value ? score : max);
 
 // Compute candidate scores to fill a certain cell of the scoring matrix.
 // Returns a list of score objects storing score value and traceback direction.
@@ -75,10 +73,7 @@ function smithWaterman({ sequence1, sequence2, gapScoreFunction, similarityScore
             });
 
             // Select highest scoring substitution and fill the matrices.
-            const { value: bestScore, direction } = scores.reduce(scoreReducer, {
-                value: 0,
-                direction: directions.NONE,
-            });
+            const { value: bestScore, direction } = reduceScores(scores);
             scoringMatrix[row][col] = bestScore;
             tracebackMatrix[row][col] = direction;
 
