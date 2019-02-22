@@ -10,6 +10,8 @@ const nanException = () => {
     throw TypeError('Non number input to decreaseAndRectify().');
 };
 
+const throwIfNotNumber = x => (Number.isNaN(Number(x)) ? nanException() : x);
+
 const scoreReducer = (max, score) => {
     if (Number.isInteger(score.score)) {
         return score.score > max.score ? score : max;
@@ -19,8 +21,6 @@ const scoreReducer = (max, score) => {
 
 const reduceTracedScores = (scores, defaultScore) =>
     scores.reduce(scoreReducer, TracedScore(defaultScore));
-
-const throwIfNotNumber = x => (Number.isNaN(Number(x)) ? nanException() : x);
 
 module.exports = {
     apply,
