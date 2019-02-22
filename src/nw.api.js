@@ -1,23 +1,22 @@
 const { directions: directionsEnum } = require('./dtypes');
-const { smithWaterman } = require('./sw.core');
-const { traceback } = require('./sw.traceback');
-const { reverse } = require('./utils');
+const { needlemanWunsch } = require('./nw.core');
+const { traceback } = require('./nw.traceback');
 
-const SWAligner = ({
-    similarityScoreFunction = (char1, char2) => (char1 === char2 ? 2 : -1),
-    gapScoreFunction = reverse,
+const NWAligner = ({
+    similarityScoreFunction = (char1, char2) => (char1 === char2 ? 1 : -2),
+    inDelScore = -1,
     directions = directionsEnum,
     gapSymbol = '-',
 } = {}) => ({
     similarityScoreFunction,
-    gapScoreFunction,
+    inDelScore,
     gapSymbol,
     directions,
     align(sequence1 = '', sequence2 = '') {
-        const { alignmentScore, scoringMatrix, tracebackMatrix, ...tracebackArgs } = smithWaterman({
+        const { alignmentScore, scoringMatrix, tracebackMatrix } = needlemanWunsch({
             sequence1,
             sequence2,
-            gapScoreFunction: this.gapScoreFunction,
+            inDelScore: this.inDelScore,
             similarityScoreFunction: this.similarityScoreFunction,
         });
         const { alignedSequence1, alignedSequence2, coordinateWalk } = traceback({
@@ -25,7 +24,6 @@ const SWAligner = ({
             sequence2,
             tracebackMatrix,
             gapSymbol: this.gapSymbol,
-            ...tracebackArgs,
         });
         return {
             score: alignmentScore,
@@ -39,4 +37,4 @@ const SWAligner = ({
     },
 });
 
-module.exports = SWAligner;
+module.exports = NWAligner;
