@@ -1,4 +1,23 @@
-// Creates a matrix filled with zeros of the specified width and length.
+// Creates a matrix of the specified width and length.
+// First row and column are filled with a negative integer progression starting
+// from 0 ar coordinates (0, 0). The remaining cells are filled with zeros.
+const createNWMatrix = ({ width, heigth }) => {
+    const matrix = [];
+    for (let row = 0; row < heigth; row += 1) {
+        if (row === 0) {
+            matrix[row] = Array(width)
+                .fill()
+                .map((_, i) => -i || 0);
+        } else {
+            matrix[row] = Array(width).fill(0);
+            matrix[row][0] = -row;
+        }
+    }
+    return matrix;
+};
+
+// Creates a matrix filled with the supplied value of the specified width and
+// length.
 const createMatrix = ({ width, heigth, fill = 0 }) =>
     Array(heigth)
         .fill(fill)
@@ -16,6 +35,7 @@ const extractColumn = ({ matrix, row, col }) =>
 
 module.exports = {
     createMatrix,
+    createNWMatrix,
     extractColumn,
     extractRow,
 };

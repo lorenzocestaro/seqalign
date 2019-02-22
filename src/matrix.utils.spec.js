@@ -1,4 +1,4 @@
-const { createMatrix, extractColumn, extractRow } = require('./matrix.utils');
+const { createMatrix, createNWMatrix, extractColumn, extractRow } = require('./matrix.utils');
 
 // prettier-ignore
 const matrixFixture = [
@@ -39,6 +39,41 @@ describe('Matrix creation', () => {
         [{ width: 0, heigth: 0 }, []],
     ])('should return a matrix with the specified dimensions', (input, output) =>
         expect(createMatrix(input)).toEqual(output),
+    );
+});
+
+describe('Initial matrix creation for Needleman-Wunsch', () => {
+    it.each([
+        [
+            { width: 10, heigth: 3 },
+            [
+                [0, -1, -2, -3, -4, -5, -6, -7, -8, -9],
+                [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [-2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ],
+        ],
+        [
+            { width: 3, heigth: 10 },
+            [
+                [0, -1, -2],
+                [-1, 0, 0],
+                [-2, 0, 0],
+                [-3, 0, 0],
+                [-4, 0, 0],
+                [-5, 0, 0],
+                [-6, 0, 0],
+                [-7, 0, 0],
+                [-8, 0, 0],
+                [-9, 0, 0],
+            ],
+        ],
+        [{ width: 3, heigth: 3 }, [[0, -1, -2], [-1, 0, 0], [-2, 0, 0]]],
+        [{ width: 2, heigth: 2 }, [[0, -1], [-1, 0]]],
+        [{ width: 1, heigth: 1 }, [[0]]],
+        [{ width: 0, heigth: 0 }, []],
+    ])(
+        'should return a matrix with the specified dimensions and with a negative integer progression buffer',
+        (input, output) => expect(createNWMatrix(input)).toEqual(output),
     );
 });
 
