@@ -1,0 +1,25 @@
+language: node_js
+
+node_js:
+- node
+
+before_script:
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- ./cc-test-reporter before-build
+
+script:
+- npm test
+
+after_script:
+- ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+deploy:
+  provider: npm
+  email: cestaro.lorenzo@gmail.com
+  api_key:
+    secure: h55PsXBsVMTxTV1eRHqNMKJkdQLlhc7SpJ4qw4JFFmiPHPEiQ57CEex6bRmgimzFy8+zSd3ui2yuBFJ39E5gKYB+hOemHCGUA/qCWxBO2fSSIgmwHR3iCUQ8w7OX3RgPckfIE86K0MD0WX7BkNdY2M3WimNpxiVzGdMUs4dwVGHyeBdM4HbsrJXtDcKT2e/Jv+l1X5hnUBiQL5qESKSsYObD3JQUdnK4oYbAPQK+SEhVshaOUUBKlS0DxGE4OxkwHeAcuSIphCyOMhZI1b/HY3jd76j9gwuu2h4uiw0ByJiojpHWH7xmYwzOz6b7TlVQqLtBunaJl7OM2Yu1mSHAgRwC8PP2R4B5h9RlQGR21+2QZCzqV+G4V9k47NTMYURqoC6YRFQlAiBli1wKRhRpWSMPipMxUloWNY8XPABMM9c6I2MNtuwY/jpMXtXZANU8IkiAtXUOxnXB4oUTQJGh/8Hu7gBiPaya2drWrJ9lnBsWoDgiJsv+YhD34XWcsFAh1J0U2q55pqn8/a7yNdoAlX5NRBA6JifeIsmhIot7+J59MzIWQulLHtsmd8iWXZ2Cu8p5OQIBBYLO8RSw5LGcHHu9VVnNb1F8BTBLndcYY0iWv9FyPHkt0K14Kb+HqKhB06pjGJ6/cFSUHhlX7f4NleHavTxO2Ux+UZjALIYkJ8Y=
+  on:
+    tags: true
+    repo: lorenzocestaro/seqalign
+    branch: master
