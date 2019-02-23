@@ -1,7 +1,7 @@
 const { alignmentUpdaters, coordinateUpdaters } = require('./traceback.utils');
 
-function traceback({ sequence1, sequence2, tracebackMatrix, gapSymbol }) {
-    let [row, col] = [sequence1.length, sequence2.length];
+function traceback({ sequence1, sequence2, tracebackMatrix, tracebackStart, gapSymbol }) {
+    let [row, col] = tracebackStart;
     const aligned1 = [];
     const aligned2 = [];
     const coordinateWalk = [[row, col]];
@@ -23,6 +23,4 @@ function traceback({ sequence1, sequence2, tracebackMatrix, gapSymbol }) {
     };
 }
 
-module.exports = {
-    traceback,
-};
+module.exports = traceback;

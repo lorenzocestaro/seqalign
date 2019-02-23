@@ -9,7 +9,8 @@ function needlemanWunsch({ sequence1, sequence2, gapScoreFunction, similaritySco
     const scoringMatrix = createNWMatrix({ width, heigth });
     const tracebackMatrix = createMatrix({ width, heigth, fill: directions.NONE });
 
-    let lastScore;
+    let lastScore = 0;
+    let lastCoordinates = [0, 0];
 
     // Fill the matrices.
     for (let row = 1; row < heigth; row += 1) {
@@ -27,10 +28,11 @@ function needlemanWunsch({ sequence1, sequence2, gapScoreFunction, similaritySco
             ];
 
             // Select highest scoring substitution and fill the matrices.
-            const { score: bestScore, direction } = reduceTracedScores(scores, -Infinity);
-            scoringMatrix[row][col] = bestScore;
+            const { score: cellScore, direction } = reduceTracedScores(scores, -Infinity);
+            scoringMatrix[row][col] = cellScore;
             tracebackMatrix[row][col] = direction;
-            lastScore = bestScore;
+            lastScore = cellScore;
+            lastCoordinates = [row, col];
         }
     }
 
@@ -38,6 +40,7 @@ function needlemanWunsch({ sequence1, sequence2, gapScoreFunction, similaritySco
         alignmentScore: lastScore,
         scoringMatrix,
         tracebackMatrix,
+        tracebackStart: lastCoordinates,
     };
 }
 

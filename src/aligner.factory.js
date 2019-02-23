@@ -1,7 +1,6 @@
-const { traceback } = require('./nw.traceback');
-
 const AlignerFactory = ({
     algorithm,
+    traceback,
     similarityScoreFunctionDefault,
     gapScoreFunctionDefault,
     directionsDefault,
@@ -17,7 +16,7 @@ const AlignerFactory = ({
     gapSymbol,
     directions,
     align(sequence1 = '', sequence2 = '') {
-        const { alignmentScore, scoringMatrix, tracebackMatrix } = algorithm({
+        const { alignmentScore, scoringMatrix, tracebackMatrix, tracebackStart } = algorithm({
             sequence1,
             sequence2,
             gapScoreFunction: this.gapScoreFunction,
@@ -27,6 +26,7 @@ const AlignerFactory = ({
             sequence1,
             sequence2,
             tracebackMatrix,
+            tracebackStart,
             gapSymbol: this.gapSymbol,
         });
         return {

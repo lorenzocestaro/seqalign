@@ -1,8 +1,8 @@
 const { directions } = require('./dtypes');
 const { alignmentUpdaters, coordinateUpdaters } = require('./traceback.utils');
 
-function traceback({ sequence1, sequence2, tracebackMatrix, startCoordinates, gapSymbol }) {
-    let [row, col] = startCoordinates;
+function traceback({ sequence1, sequence2, tracebackMatrix, tracebackStart, gapSymbol }) {
+    let [row, col] = tracebackStart;
     const aligned1 = [];
     const aligned2 = [];
     const coordinateWalk = [[row, col]];
@@ -24,6 +24,4 @@ function traceback({ sequence1, sequence2, tracebackMatrix, startCoordinates, ga
     };
 }
 
-module.exports = {
-    traceback,
-};
+module.exports = traceback;

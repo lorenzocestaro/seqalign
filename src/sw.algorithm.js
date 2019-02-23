@@ -82,9 +82,9 @@ function smithWaterman({ sequence1, sequence2, gapScoreFunction, similarityScore
 
     return {
         alignmentScore: highestScore,
-        startCoordinates: highestScoreCoordinates,
         scoringMatrix,
         tracebackMatrix,
+        tracebackStart: highestScoreCoordinates,
     };
 }
 
