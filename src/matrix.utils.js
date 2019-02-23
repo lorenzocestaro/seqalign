@@ -1,4 +1,4 @@
-const { directions: defaultdirections } = require('./dtypes');
+const { directions } = require('./dtypes');
 
 // Creates a matrix of the specified width and length.
 // First row and column are filled with a negative integer progression starting
@@ -22,7 +22,7 @@ const initNWScoringMatrix = ({ width, heigth }) => {
 // The top row buffer is filled with the value for directions.LEFT.
 // The left column buffer is filled with the value for directions.TOP.
 // The top-left corner cell is filled with the value for directions.NONE.
-const initNWTracebacMatrix = ({ width, heigth, directions = defaultdirections }) => {
+const initNWTracebacMatrix = ({ width, heigth }) => {
     const matrix = [];
     for (let row = 0; row < heigth; row += 1) {
         if (row === 0) {

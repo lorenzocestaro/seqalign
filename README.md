@@ -37,6 +37,9 @@ a similarity score (integer).
     scoring insertions and deletions in the alignment.
 * `gapSymbol`: a custom character (string) used to represent gaps in the
 alignment.
+
+All the listed parameters are accessible from each aligner instance in addition
+with the following non configurable parameters:
 * `directions`: enum object used to define direction codes for the traceback
 matrix.
 
@@ -53,20 +56,7 @@ const gapScoreFunction = () => -1;
 
 // Common defaults.
 const gapSymbol = '-';
-const directions = Object.freeze({
-    NONE: 0,
-    DIAGONAL: 1,
-    LEFT: 2,
-    TOP: 3,
-});
 ```
-Generally, you should not have the need to change the directions enum, but if
-you need to carry out operations on the traceback matrix yourself, you can
-define your custom characters, remember:
-* It is not necessary to freeze the custom directions object but it is
-recommended.
-* Do not change enum keys (i.e. `NONE`, `DIAGONAL`, `LEFT`, `TOP`) or the
-algorithms will not work.
 
 #### Usage
 Instantiating `SWaligner` or `NWaligner` returns an aligner object which exposes an `align`
