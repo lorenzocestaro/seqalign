@@ -88,6 +88,4 @@ function smithWaterman({ sequence1, sequence2, gapScoreFunction, similarityScore
     };
 }
 
-module.exports = {
-    smithWaterman,
-};
+module.exports = smithWaterman;

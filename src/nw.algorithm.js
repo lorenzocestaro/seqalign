@@ -1,10 +1,8 @@
 const { createMatrix, createNWMatrix } = require('./matrix.utils');
-const { directions } = require('./dtypes');
+const { reduceTracedScores } = require('./utils');
+const { TracedScore, directions } = require('./dtypes');
 
-// Find maximum in a list of objects with a value property.
-const scoreReducer = (max, score) => (score.value > max.value ? score : max);
-
-function needlemanWunsch({ sequence1, sequence2, inDelScore, similarityScoreFunction }) {
+function needlemanWunsch({ sequence1, sequence2, gapScoreFunction, similarityScoreFunction }) {
     // Initialize matrices for dynamic programming solution.
     const heigth = sequence1.length + 1;
     const width = sequence2.length + 1;
@@ -23,19 +21,13 @@ function needlemanWunsch({ sequence1, sequence2, inDelScore, similarityScoreFunc
 
             // Candidate scores to fill the current matrix cell.
             const scores = [
-                { value: scoringMatrix[row - 1][col] + inDelScore, direction: directions.TOP },
-                { value: scoringMatrix[row][col - 1] + inDelScore, direction: directions.LEFT },
-                {
-                    value: scoringMatrix[row - 1][col - 1] + similarityScore,
-                    direction: directions.DIAGONAL,
-                },
+                TracedScore(scoringMatrix[row - 1][col] + gapScoreFunction(), directions.TOP),
+                TracedScore(scoringMatrix[row][col - 1] + gapScoreFunction(), directions.LEFT),
+                TracedScore(scoringMatrix[row - 1][col - 1] + similarityScore, directions.DIAGONAL),
             ];
 
             // Select highest scoring substitution and fill the matrices.
-            const { value: bestScore, direction } = scores.reduce(scoreReducer, {
-                value: -Infinity,
-                direction: directions.NONE,
-            });
+            const { score: bestScore, direction } = reduceTracedScores(scores, -Infinity);
             scoringMatrix[row][col] = bestScore;
             tracebackMatrix[row][col] = direction;
             lastScore = bestScore;
@@ -49,6 +41,4 @@ function needlemanWunsch({ sequence1, sequence2, inDelScore, similarityScoreFunc
     };
 }
 
-module.exports = {
-    needlemanWunsch,
-};
+module.exports = needlemanWunsch;
