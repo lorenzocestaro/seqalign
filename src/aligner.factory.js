@@ -1,6 +1,7 @@
+const traceback = require('./traceback');
+
 const AlignerFactory = ({
     algorithm,
-    traceback,
     similarityScoreFunctionDefault,
     gapScoreFunctionDefault,
     directionsDefault,

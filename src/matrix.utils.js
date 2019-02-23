@@ -1,7 +1,9 @@
+const { directions: defaultdirections } = require('./dtypes');
+
 // Creates a matrix of the specified width and length.
 // First row and column are filled with a negative integer progression starting
 // from 0 ar coordinates (0, 0). The remaining cells are filled with zeros.
-const createNWMatrix = ({ width, heigth }) => {
+const initNWScoringMatrix = ({ width, heigth }) => {
     const matrix = [];
     for (let row = 0; row < heigth; row += 1) {
         if (row === 0) {
@@ -12,6 +14,24 @@ const createNWMatrix = ({ width, heigth }) => {
             matrix[row] = Array(width).fill(0);
             matrix[row][0] = -row;
         }
+    }
+    return matrix;
+};
+
+// Creates a matrix of the specified width and length.
+// The top row buffer is filled with the value for directions.LEFT.
+// The left column buffer is filled with the value for directions.TOP.
+// The top-left corner cell is filled with the value for directions.NONE.
+const initNWTracebacMatrix = ({ width, heigth, directions = defaultdirections }) => {
+    const matrix = [];
+    for (let row = 0; row < heigth; row += 1) {
+        if (row === 0) {
+            matrix[row] = Array(width).fill(directions.LEFT);
+        } else {
+            matrix[row] = Array(width).fill(directions.NONE);
+            matrix[row][0] = directions.TOP;
+        }
+        matrix[0][0] = directions.NONE;
     }
     return matrix;
 };
@@ -35,7 +55,8 @@ const extractColumn = ({ matrix, row, col }) =>
 
 module.exports = {
     createMatrix,
-    createNWMatrix,
     extractColumn,
     extractRow,
+    initNWScoringMatrix,
+    initNWTracebacMatrix,
 };

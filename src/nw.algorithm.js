@@ -1,4 +1,4 @@
-const { createMatrix, createNWMatrix } = require('./matrix.utils');
+const { initNWScoringMatrix, initNWTracebacMatrix } = require('./matrix.utils');
 const { reduceTracedScores } = require('./utils');
 const { TracedScore, directions } = require('./dtypes');
 
@@ -6,8 +6,8 @@ function needlemanWunsch({ sequence1, sequence2, gapScoreFunction, similaritySco
     // Initialize matrices for dynamic programming solution.
     const heigth = sequence1.length + 1;
     const width = sequence2.length + 1;
-    const scoringMatrix = createNWMatrix({ width, heigth });
-    const tracebackMatrix = createMatrix({ width, heigth, fill: directions.NONE });
+    const scoringMatrix = initNWScoringMatrix({ width, heigth });
+    const tracebackMatrix = initNWTracebacMatrix({ width, heigth, directions });
 
     let lastScore = 0;
     let lastCoordinates = [0, 0];

@@ -45,7 +45,7 @@ function smithWaterman({ sequence1, sequence2, gapScoreFunction, similarityScore
     const heigth = sequence1.length + 1;
     const width = sequence2.length + 1;
     const scoringMatrix = createMatrix({ width, heigth });
-    const tracebackMatrix = createMatrix({ width, heigth });
+    const tracebackMatrix = createMatrix({ width, heigth, fill: directions.NONE });
 
     let highestScore = 0;
     let highestScoreCoordinates = [0, 0];

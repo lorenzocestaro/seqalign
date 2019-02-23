@@ -1,4 +1,4 @@
-const { createMatrix, createNWMatrix, extractColumn, extractRow } = require('./matrix.utils');
+const { createMatrix, initNWScoringMatrix, extractColumn, extractRow } = require('./matrix.utils');
 
 // prettier-ignore
 const matrixFixture = [
@@ -73,7 +73,7 @@ describe('Initial matrix creation for Needleman-Wunsch', () => {
         [{ width: 0, heigth: 0 }, []],
     ])(
         'should return a matrix with the specified dimensions and with a negative integer progression buffer',
-        (input, output) => expect(createNWMatrix(input)).toEqual(output),
+        (input, output) => expect(initNWScoringMatrix(input)).toEqual(output),
     );
 });
 

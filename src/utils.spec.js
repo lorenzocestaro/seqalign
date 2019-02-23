@@ -1,28 +1,5 @@
-const { apply, reverse, reduceTracedScores } = require('./utils');
+const { reverse, reduceTracedScores } = require('./utils');
 const { TracedScore } = require('./dtypes');
-
-describe('Apply', () => {
-    it('should return a function', () => {
-        const applied = apply(jest.fn());
-        expect(applied).toBeInstanceOf(Function);
-    });
-});
-
-describe('Applied function', () => {
-    it('should be called as many times as the items in the iterator', () => {
-        const array = [1, 2, 3, 4, 5];
-        const fnToApply = jest.fn();
-        const applyFn = apply(fnToApply);
-        applyFn(array);
-        expect(fnToApply).toBeCalledTimes(array.length);
-    });
-    it('should raise an error when the input argument is not an array', () => {
-        const faultyInput = 'string';
-        const fnToApply = jest.fn();
-        const applyFn = apply(fnToApply);
-        expect(() => applyFn(faultyInput)).toThrowError(TypeError);
-    });
-});
 
 describe('Reverse', () => {
     it.each([0, -1, 2, -3, 54, -156, -89689, 0.34])(
