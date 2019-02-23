@@ -1,20 +1,21 @@
-### sequence-align
+# sequence-align
 
-![Travis (.org)](https://img.shields.io/travis/lorenzocestaro/seqalign.svg)
-![Code Climate coverage](https://img.shields.io/codeclimate/coverage/lorenzocestaro/seqalign.svg)
-![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/lorenzocestaro/seqalign.svg)
-![npm](https://img.shields.io/npm/v/seqalign.svg)
 
 _Collection of sequence alignment algorithms._
 
-## Table of contents
+[![Travis (.org)](https://img.shields.io/travis/lorenzocestaro/seqalign.svg)](https://travis-ci.org/lorenzocestaro/seqalign)
+[![Code Climate coverage](https://img.shields.io/codeclimate/coverage/lorenzocestaro/seqalign.svg)](https://codeclimate.com/github/lorenzocestaro/seqalign)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/lorenzocestaro/seqalign.svg)](https://codeclimate.com/github/lorenzocestaro/seqalign)
+[![npm](https://img.shields.io/npm/v/seqalign.svg)](https://www.npmjs.com/package/seqalign)
+
+### Table of contents
 * [Getting started](#getting-started)
 * [Aligners](#aligners)
 * [Defaults](#defaults)
 * [Usage](#usage)
 * [Alignment result](#alignment-result)
 
-## Getting started
+### Getting started
 Install the package from npm:
 ```bash
 $ npm install --save seqalign
@@ -24,7 +25,7 @@ Import the package in your project:
 const { NWaligner, SWaligner } = require('seqalign');
 ```
 
-#### Aligners
+### Aligners
 `SWaligner` and `NWaligner` are factory fucntions, you can create many aligners
 with different parameters and re-use each one multiple times. An aligner is
 configurable with the following parameters (all of them are optional):
@@ -43,7 +44,7 @@ with the following non configurable parameters:
 * `directions`: enum object used to define direction codes for the traceback
 matrix.
 
-#### Defaults
+### Defaults
 Here are the default values for the aligner options:
 ```javascript
 // Smith-Waterman.
@@ -58,7 +59,7 @@ const gapScoreFunction = () => -1;
 const gapSymbol = '-';
 ```
 
-#### Usage
+### Usage
 Instantiating `SWaligner` or `NWaligner` returns an aligner object which exposes an `align`
 method. `align` accepts the two strings to align as input:
 ```javascript
@@ -105,7 +106,7 @@ console.log(customResult.alignment)
 // > dele~tion
 ```
 
-## Alignment result
+### Alignment result
 The `align` method of the aligner instances returns an object with the following
 properties:
 * `score <int>`: alignment score.
