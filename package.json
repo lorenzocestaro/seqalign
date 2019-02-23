@@ -1,6 +1,6 @@
 {
     "name": "seqalign",
-    "version": "1.0.0-alpha",
+    "version": "1.0.0",
     "description": "Collection of sequence alignment algorithms.",
     "license": "MIT",
     "keywords": [
