@@ -1,8 +1,8 @@
 ### sequence-align
 
 [![Build Status](https://travis-ci.org/lorenzocestaro/seqalign.svg?branch=master)](https://travis-ci.org/lorenzocestaro/seqalign)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/1e71505ebaff9557852d/test_coverage)](https://codeclimate.com/github/lorenzocestaro/seqalign/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/1e71505ebaff9557852d/maintainability)](https://codeclimate.com/github/lorenzocestaro/seqalign/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d3e25d03714b62a8dc9e/test_coverage)](https://codeclimate.com/github/lorenzocestaro/seqalign/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d3e25d03714b62a8dc9e/maintainability)](https://codeclimate.com/github/lorenzocestaro/seqalign/maintainability)
 [![npm version](https://badge.fury.io/js/seqalign.svg)](https://badge.fury.io/js/seqalign)
 
 _Collection of sequence alignment algorithms._
