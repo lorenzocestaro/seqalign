@@ -1,7 +1,13 @@
-const { directions } = require('./dtypes');
 const { alignmentUpdaters, coordinateUpdaters } = require('./traceback.utils');
 
-function traceback({ sequence1, sequence2, tracebackMatrix, tracebackStart, gapSymbol }) {
+function traceback({
+    sequence1,
+    sequence2,
+    tracebackMatrix,
+    tracebackStart,
+    gapSymbol,
+    directions,
+}) {
     let [row, col] = tracebackStart;
     const aligned1 = [];
     const aligned2 = [];

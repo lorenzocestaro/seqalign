@@ -1,6 +1,6 @@
 const { createMatrix, extractColumn, extractRow } = require('./matrix.utils');
 const { reduceTracedScores } = require('./utils');
-const { TracedScore, directions } = require('./dtypes');
+const { TracedScore } = require('./dtypes');
 
 // Takes a portion of scoring matrix (left-row or top-column) and computes the
 // length of a gap if the gap is opened at that position.
@@ -19,7 +19,7 @@ function computeGapLength(sequence) {
 
 // Compute candidate scores to fill a certain cell of the scoring matrix.
 // Returns a list of score objects storing score value and traceback direction.
-function computeScores({ scoringMatrix, row, col, gapScoreFunction, similarityScore }) {
+function computeScores({ scoringMatrix, row, col, gapScoreFunction, similarityScore, directions }) {
     // Get left-row and top-column from the current coordinates.
     const leftSequence = extractRow({ matrix: scoringMatrix, row, col });
     const topSequence = extractColumn({ matrix: scoringMatrix, row, col });
@@ -40,7 +40,13 @@ function computeScores({ scoringMatrix, row, col, gapScoreFunction, similaritySc
     ];
 }
 
-function smithWaterman({ sequence1, sequence2, gapScoreFunction, similarityScoreFunction }) {
+function smithWaterman({
+    sequence1,
+    sequence2,
+    gapScoreFunction,
+    similarityScoreFunction,
+    directions,
+}) {
     // Initialize matrices for dynamic programming solution.
     const heigth = sequence1.length + 1;
     const width = sequence2.length + 1;
@@ -65,6 +71,7 @@ function smithWaterman({ sequence1, sequence2, gapScoreFunction, similarityScore
                 col,
                 gapScoreFunction,
                 similarityScore,
+                directions,
             });
 
             // Select highest scoring substitution and fill the matrices.

@@ -21,8 +21,7 @@ describe('NWaligner instance align() method', () => {
         const aligner = NWaligner();
         const spy = jest.spyOn(aligner, 'align');
         const alignment = aligner.align('insertion', 'deletion');
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).not.toThrow();
+        expect(spy).toHaveReturnedTimes(1);
         expect(alignment).toBeDefined();
     });
     it('should return a valid data structure', () => {
@@ -95,8 +94,7 @@ describe('SWaligner instance align() method', () => {
         const aligner = SWaligner();
         const spy = jest.spyOn(aligner, 'align');
         const alignment = aligner.align('insertion', 'deletion');
-        expect(spy).toHaveBeenCalledTimes(1);
-        expect(spy).not.toThrow();
+        expect(spy).toHaveReturnedTimes(1);
         expect(alignment).toBeDefined();
     });
     it('should return a valid data structure', () => {

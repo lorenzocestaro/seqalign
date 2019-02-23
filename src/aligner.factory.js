@@ -22,6 +22,7 @@ const AlignerFactory = ({
             sequence2,
             gapScoreFunction: this.gapScoreFunction,
             similarityScoreFunction: this.similarityScoreFunction,
+            directions: this.directions,
         });
         const { alignedSequence1, alignedSequence2, coordinateWalk } = traceback({
             sequence1,
@@ -29,6 +30,7 @@ const AlignerFactory = ({
             tracebackMatrix,
             tracebackStart,
             gapSymbol: this.gapSymbol,
+            directions: this.directions,
         });
         return {
             score: alignmentScore,
