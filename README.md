@@ -1,5 +1,4 @@
-# sequence-align
-
+# seqalign
 
 _Collection of sequence alignment algorithms._
 
