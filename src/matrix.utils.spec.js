@@ -33,8 +33,21 @@ describe('Matrix creation', () => {
                 [0, 0, 0],
             ],
         ],
-        [{ width: 3, heigth: 3 }, [[0, 0, 0], [0, 0, 0], [0, 0, 0]]],
-        [{ width: 2, heigth: 2 }, [[0, 0], [0, 0]]],
+        [
+            { width: 3, heigth: 3 },
+            [
+                [0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0],
+            ],
+        ],
+        [
+            { width: 2, heigth: 2 },
+            [
+                [0, 0],
+                [0, 0],
+            ],
+        ],
         [{ width: 1, heigth: 1 }, [[0]]],
         [{ width: 0, heigth: 0 }, []],
     ])('should return a matrix with the specified dimensions', (input, output) =>
@@ -67,8 +80,21 @@ describe('Initial matrix creation for Needleman-Wunsch', () => {
                 [-9, 0, 0],
             ],
         ],
-        [{ width: 3, heigth: 3 }, [[0, -1, -2], [-1, 0, 0], [-2, 0, 0]]],
-        [{ width: 2, heigth: 2 }, [[0, -1], [-1, 0]]],
+        [
+            { width: 3, heigth: 3 },
+            [
+                [0, -1, -2],
+                [-1, 0, 0],
+                [-2, 0, 0],
+            ],
+        ],
+        [
+            { width: 2, heigth: 2 },
+            [
+                [0, -1],
+                [-1, 0],
+            ],
+        ],
         [{ width: 1, heigth: 1 }, [[0]]],
         [{ width: 0, heigth: 0 }, []],
     ])(

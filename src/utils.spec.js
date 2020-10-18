@@ -2,13 +2,19 @@ const { reverse, reduceTracedScores } = require('./utils');
 const { TracedScore } = require('./dtypes');
 
 describe('Reverse', () => {
-    it.each([0, -1, 2, -3, 54, -156, -89689, 0.34])(
-        'should reverse the sign of every numeric input',
-        n => expect(reverse(n)).toBe(-1 * n),
-    );
+    it.each([
+        0,
+        -1,
+        2,
+        -3,
+        54,
+        -156,
+        -89689,
+        0.34,
+    ])('should reverse the sign of every numeric input', (n) => expect(reverse(n)).toBe(-1 * n));
     it.each(['string', [1, 2, 3], { a: 1, b: 2 }])(
         'should raise TypeError for non number inputs',
-        n => expect(() => reverse(n)).toThrowError(TypeError),
+        (n) => expect(() => reverse(n)).toThrowError(TypeError),
     );
 });
 
@@ -25,14 +31,14 @@ describe('TracedScore reducer', () => {
         [[TracedScore(1), TracedScore(-3), TracedScore('4')]],
         [[TracedScore(3), TracedScore(() => {}), TracedScore(13)]],
         [[{ novalue: 3 }]],
-    ])('should throw TypeError if supplied with non integer score values', toReduce =>
+    ])('should throw TypeError if supplied with non integer score values', (toReduce) =>
         expect(() => reduceTracedScores(toReduce)).toThrowError(TypeError),
     );
     it.each([
         [[TracedScore(-1), TracedScore(-4), TracedScore(-18)]],
         [[TracedScore(0), TracedScore(0), TracedScore(0)]],
         [[]],
-    ])('should default to and object with default score and direction NONE', toReduce =>
+    ])('should default to and object with default score and direction NONE', (toReduce) =>
         expect(reduceTracedScores(toReduce, 0)).toEqual(TracedScore(0)),
     );
     it('should throw TypeError if objects with no value property are supplied', () =>

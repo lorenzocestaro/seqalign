@@ -48,22 +48,22 @@ describe('NWaligner instance align() method', () => {
         expect(alignment).toHaveProperty('scoringMatrix');
         expect(alignment.scoringMatrix).toEqual(expect.any(Array));
         expect(alignment.scoringMatrix).toHaveLength(seq1.length + 1);
-        alignment.scoringMatrix.forEach(row => {
+        alignment.scoringMatrix.forEach((row) => {
             expect(row).toHaveLength(seq2.length + 1);
-            row.forEach(cell => expect(cell).toEqual(expect.any(Number)));
+            row.forEach((cell) => expect(cell).toEqual(expect.any(Number)));
         });
 
         expect(alignment).toHaveProperty('tracebackMatrix');
         expect(alignment.tracebackMatrix).toEqual(expect.any(Array));
         expect(alignment.tracebackMatrix).toHaveLength(seq1.length + 1);
-        alignment.tracebackMatrix.forEach(row => {
+        alignment.tracebackMatrix.forEach((row) => {
             expect(row).toHaveLength(seq2.length + 1);
-            row.forEach(cell => expect(cell).toEqual(expect.anything()));
+            row.forEach((cell) => expect(cell).toEqual(expect.anything()));
         });
 
         expect(alignment).toHaveProperty('coordinateWalk');
         expect(alignment.coordinateWalk).toEqual(expect.any(Array));
-        alignment.coordinateWalk.forEach(coordinate => {
+        alignment.coordinateWalk.forEach((coordinate) => {
             expect(coordinate).toEqual([expect.any(Number), expect.any(Number)]);
         });
 
@@ -121,22 +121,22 @@ describe('SWaligner instance align() method', () => {
         expect(alignment).toHaveProperty('scoringMatrix');
         expect(alignment.scoringMatrix).toEqual(expect.any(Array));
         expect(alignment.scoringMatrix).toHaveLength(seq1.length + 1);
-        alignment.scoringMatrix.forEach(row => {
+        alignment.scoringMatrix.forEach((row) => {
             expect(row).toHaveLength(seq2.length + 1);
-            row.forEach(cell => expect(cell).toEqual(expect.any(Number)));
+            row.forEach((cell) => expect(cell).toEqual(expect.any(Number)));
         });
 
         expect(alignment).toHaveProperty('tracebackMatrix');
         expect(alignment.tracebackMatrix).toEqual(expect.any(Array));
         expect(alignment.tracebackMatrix).toHaveLength(seq1.length + 1);
-        alignment.tracebackMatrix.forEach(row => {
+        alignment.tracebackMatrix.forEach((row) => {
             expect(row).toHaveLength(seq2.length + 1);
-            row.forEach(cell => expect(cell).toEqual(expect.anything()));
+            row.forEach((cell) => expect(cell).toEqual(expect.anything()));
         });
 
         expect(alignment).toHaveProperty('coordinateWalk');
         expect(alignment.coordinateWalk).toEqual(expect.any(Array));
-        alignment.coordinateWalk.forEach(coordinate => {
+        alignment.coordinateWalk.forEach((coordinate) => {
             expect(coordinate).toEqual([expect.any(Number), expect.any(Number)]);
         });
 
