@@ -24,23 +24,22 @@
         "lint": "prettier -l src/**/*.js && eslint src/**",
         "prettify": "prettier --write src/**/*.js",
         "test": "jest --verbose --coverage",
-        "coverage": "jest --collectCoverageFrom=src/**.js --coverage"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "npm run lint && npm test"
-        }
+        "prepare": "husky install"
     },
     "devDependencies": {
-        "eslint": "^7.11.0",
-        "eslint-config-airbnb": "^18.2.0",
-        "eslint-config-airbnb-base": "^14.2.0",
-        "eslint-config-prettier": "^6.13.0",
-        "eslint-plugin-import": "^2.14.0",
-        "eslint-plugin-jest": "^24.1.0",
-        "eslint-plugin-prettier": "^3.0.0",
-        "husky": "^4.3.0",
-        "jest": "^26.5.3",
-        "prettier": "2.1.2"
+        "eslint": "^8.4.1",
+        "eslint-config-airbnb": "^19.0.2",
+        "eslint-config-airbnb-base": "^15.0.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.25.3",
+        "eslint-plugin-jest": "^25.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "husky": "^7.0.4",
+        "jest": "^27.4.4",
+        "lint-staged": ">=10",
+        "prettier": "2.5.1"
+    },
+    "lint-staged": {
+        "*.js": "eslint --cache --fix"
     }
 }
