@@ -23,8 +23,8 @@ export const NWaligner: ({ similarityScoreFunction, gapScoreFunction, gapSymbol,
     };
 };
 export const SWaligner: ({ similarityScoreFunction, gapScoreFunction, gapSymbol, }?: {
-    similarityScoreFunction?: any;
-    gapScoreFunction?: any;
+    similarityScoreFunction?: (item1: any, item2: any) => number;
+    gapScoreFunction?: (len: number) => number;
     gapSymbol?: any;
 }) => {
     similarityScoreFunction: any;
@@ -37,7 +37,7 @@ export const SWaligner: ({ similarityScoreFunction, gapScoreFunction, gapSymbol,
         TOP: number;
     }>;
     align(sequence1?: string | string[], sequence2?: string | string[]): {
-        score: any;
+        score: number;
         tracebackMatrix: any;
         scoringMatrix: any;
         alignedSequences: (string | string[])[];
