@@ -22,13 +22,13 @@ declare function AlignerFactory({ algorithm, similarityScoreFunctionDefault, gap
      *
      * @param {string | string[]} sequence1
      * @param {string | string[]} sequence2
-     * @returns {{score, tracebackMatrix, scoringMatrix, alignedSequences: (string|[])[], originalSequences: string[], alignment: string, coordinateWalk: [[*,*]]}}
+     * @returns {{score, tracebackMatrix, scoringMatrix, alignedSequences: (string|string[])[], originalSequences: string[], alignment: string, coordinateWalk: [[*,*]]}}
      */
     align(sequence1?: string | string[], sequence2?: string | string[]): {
         score: any;
         tracebackMatrix: any;
         scoringMatrix: any;
-        alignedSequences: (string | [])[];
+        alignedSequences: (string | string[])[];
         originalSequences: string[];
         alignment: string;
         coordinateWalk: [[any, any]];

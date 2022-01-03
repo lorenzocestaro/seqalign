@@ -16,7 +16,7 @@ export const NWaligner: ({ similarityScoreFunction, gapScoreFunction, gapSymbol,
         score: any;
         tracebackMatrix: any;
         scoringMatrix: any;
-        alignedSequences: (string | [])[];
+        alignedSequences: (string | string[])[];
         originalSequences: string[];
         alignment: string;
         coordinateWalk: [[any, any]];
@@ -40,7 +40,7 @@ export const SWaligner: ({ similarityScoreFunction, gapScoreFunction, gapSymbol,
         score: any;
         tracebackMatrix: any;
         scoringMatrix: any;
-        alignedSequences: (string | [])[];
+        alignedSequences: (string | string[])[];
         originalSequences: string[];
         alignment: string;
         coordinateWalk: [[any, any]];
