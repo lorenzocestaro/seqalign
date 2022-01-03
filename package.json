@@ -24,7 +24,8 @@
         "lint": "prettier -l src/**/*.js && eslint src/**",
         "prettify": "prettier --write src/**/*.js",
         "test": "jest --verbose --coverage",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "generate:types": "tsc"
     },
     "devDependencies": {
         "eslint": "^8.4.1",
@@ -41,5 +42,6 @@
     },
     "lint-staged": {
         "*.js": "eslint --cache --fix"
-    }
+    },
+    "types": "./dist/index.d.ts"
 }
