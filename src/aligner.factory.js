@@ -12,6 +12,12 @@ const AlignerFactory =
         gapScoreFunction,
         gapSymbol,
         directions,
+        /**
+         *
+         * @param {string | string[]} sequence1
+         * @param {string | string[]} sequence2
+         * @returns {{score, tracebackMatrix, scoringMatrix, alignedSequences: (string|[])[], originalSequences: string[], alignment: string, coordinateWalk: [[*,*]]}}
+         */
         align(sequence1 = '', sequence2 = '') {
             const { alignmentScore, scoringMatrix, tracebackMatrix, tracebackStart } = algorithm({
                 sequence1,

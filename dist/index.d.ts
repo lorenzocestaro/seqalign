@@ -12,14 +12,14 @@ export const NWaligner: ({ similarityScoreFunction, gapScoreFunction, gapSymbol,
         LEFT: number;
         TOP: number;
     }>;
-    align(sequence1?: string, sequence2?: string): {
+    align(sequence1?: string | string[], sequence2?: string | string[]): {
         score: any;
-        originalSequences: string[];
-        alignedSequences: (string | any[])[];
-        coordinateWalk: any[][];
-        scoringMatrix: any;
         tracebackMatrix: any;
+        scoringMatrix: any;
+        alignedSequences: (string | [])[];
+        originalSequences: string[];
         alignment: string;
+        coordinateWalk: [[any, any]];
     };
 };
 export const SWaligner: ({ similarityScoreFunction, gapScoreFunction, gapSymbol, }?: {
@@ -36,14 +36,14 @@ export const SWaligner: ({ similarityScoreFunction, gapScoreFunction, gapSymbol,
         LEFT: number;
         TOP: number;
     }>;
-    align(sequence1?: string, sequence2?: string): {
+    align(sequence1?: string | string[], sequence2?: string | string[]): {
         score: any;
-        originalSequences: string[];
-        alignedSequences: (string | any[])[];
-        coordinateWalk: any[][];
-        scoringMatrix: any;
         tracebackMatrix: any;
+        scoringMatrix: any;
+        alignedSequences: (string | [])[];
+        originalSequences: string[];
         alignment: string;
+        coordinateWalk: [[any, any]];
     };
 };
 //# sourceMappingURL=index.d.ts.map

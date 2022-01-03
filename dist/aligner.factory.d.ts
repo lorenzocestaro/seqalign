@@ -18,14 +18,20 @@ declare function AlignerFactory({ algorithm, similarityScoreFunctionDefault, gap
         LEFT: number;
         TOP: number;
     }>;
-    align(sequence1?: string, sequence2?: string): {
+    /**
+     *
+     * @param {string | string[]} sequence1
+     * @param {string | string[]} sequence2
+     * @returns {{score, tracebackMatrix, scoringMatrix, alignedSequences: (string|[])[], originalSequences: string[], alignment: string, coordinateWalk: [[*,*]]}}
+     */
+    align(sequence1?: string | string[], sequence2?: string | string[]): {
         score: any;
-        originalSequences: string[];
-        alignedSequences: (string | any[])[];
-        coordinateWalk: any[][];
-        scoringMatrix: any;
         tracebackMatrix: any;
+        scoringMatrix: any;
+        alignedSequences: (string | [])[];
+        originalSequences: string[];
         alignment: string;
+        coordinateWalk: [[any, any]];
     };
 };
 //# sourceMappingURL=aligner.factory.d.ts.map

@@ -1,1 +1,1 @@
-{"version":3,"file":"aligner.factory.d.ts","sourceRoot":"","sources":["../src/aligner.factory.js"],"names":[],"mappings":";AAGA;;;;;;;;;;;;;;;;;;;;;;;;;;;;EAmCM"}
+{"version":3,"file":"aligner.factory.d.ts","sourceRoot":"","sources":["../src/aligner.factory.js"],"names":[],"mappings":";AAGA;;;;;;;;;;;;;;;;;;;IAWQ;;;;;OAKG;sBAHQ,MAAM,GAAG,MAAM,EAAE,cACjB,MAAM,GAAG,MAAM,EAAE;;;;0BAC2C,CAAC,MAAM,GAAC,EAAE,CAAC,EAAE;2BAAqB,MAAM,EAAE;mBAAa,MAAM;wBAAkB,CAAC,UAAK,CAAC;;EA0B/J"}
