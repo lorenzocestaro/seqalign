@@ -18,8 +18,8 @@ function traceback({ sequence1, sequence2, tracebackMatrix, tracebackStart, gapS
         coordinateWalk.push([row, col]);
     }
     return {
-        alignedSequence1: aligned1.join(''),
-        alignedSequence2: aligned2.join(''),
+        alignedSequence1: typeof sequence1 === 'string' ? aligned1.join('') : aligned1,
+        alignedSequence2: typeof sequence2 === 'string' ? aligned2.join('') : aligned2,
         coordinateWalk,
     };
 }
