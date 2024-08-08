@@ -4,11 +4,12 @@ const directions = Object.freeze({
     LEFT: 2,
     TOP: 3,
 });
+const directionValues = Object.values(directions);
 
 // Data type for traced back, scoring matrix, cel scores.
 // Stores a score value and a traceback direction.
 const TracedScore = (score, direction = directions.NONE) => {
-    if (Object.values(directions).includes(direction)) {
+    if (directionValues.includes(direction)) {
         return { score, direction };
     }
     throw TypeError('Invalid direction value for TracedScore');
